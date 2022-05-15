@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Библиотека{% endblock %}
+
+{% block header %}
+    {% include 'home/header.html.twig' with {'user' : user} %}
+{% endblock %}
+
+{% block body %}
+<body>
+<form class="form" id="auth-form" method="POST" enctype="multipart/form-data">
+    <h3>Авторизация</h3>
+    <p class="contact-form__description"></p>
+    <div class="form-row">
+        <input id="email" required type="email"><label for="email">Почта</label>
+    </div>
+    <div class="form-row">
+        <input id="pwd" required type="password"><label for="pwd">Пароль</label>
+    </div>
+    <p><button class="submit" id="auth">Войти!</button></p>
+    <div class="error" id="validationError"></div>
+    {% block javascripts %}
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src={{ asset('scripts/script.js') }}></script>
+    {% endblock %}
+</form>
+</body>
+{% endblock %}

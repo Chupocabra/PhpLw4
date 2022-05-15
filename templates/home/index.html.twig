@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {% include 'home/header.html.twig' with {'user' : user} %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+            <div class="row">
+                <div class="post-wrap">
+                {% for book in books %}
+                        <div class="post-item">
+                            <div class="post-item-wrap">
+                                <ul>
+                                    <li>
+                                        <div>{{ book.getAuthor() }}</div>
+                                        <div>{{ book.getName() }}</div>
+                                    </li>
+                                    <img    width="200" height="420"
+                                            src="{{ book.getCover() }}">
+
+                                    <div class="line">
+                                        {% if user!=null %}
+                                            <a href="/update/{{ book.getId() }}">
+                                                Редактировать
+                                            </a>
+                                            <a href="/delete/{{ book.getId() }}">
+                                                Удалить
+                                            </a>
+                                        {% endif %}
+                                        {% if book.getFile() != "null" %}
+                                        <a href="{{ book.getFile() }}" class="post-link">
+                                            <span>Читать</span>
+                                        </a>
+                                        {% endif %}
+                                        <span>Добавил:</span>
+                                        <span>{{ book.getAddedBy().getName() }}</span>
+
+                                    </div>
+                                    <li>
+                                        Дата прочтения: {{ book.getReadDate()|date("d.m.Y, H:i") }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                {% endfor %}
+                </div>
+                <ul class="pages">
+                    <li>
+                        {% if(hasNext) %}
+                            <a href="/?page={{ currentPage + 1 }}">Вперед&gt&gt</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        <div>{{ currentPage }}</div>
+                    </li>
+                    <li>
+                        {% if(currentPage != 1) %}
+                            <a href="/?page={{ currentPage - 1 }}">&lt&ltНазад</a>
+                        {%  endif %}
+                    </li>
+                </ul>
+            </div>
+    </div>
+{#    <div class="navigation text-center d-flex justify-content-center">#}
+{#        {{ knp_pagination_render(books) }}#}
+{#    </div>#}
+{% endblock %}

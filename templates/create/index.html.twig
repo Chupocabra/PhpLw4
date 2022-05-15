@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Библиотека{% endblock %}
+
+{% block header %}
+    {% include 'home/header.html.twig' with {'user' : user} %}
+{% endblock %}
+
+{% block body %}
+    <form class="form" id="createForm" method="POST" enctype="multipart/form-data">
+        <h3>Добавление книги</h3>
+        <div class="form-row">
+            <input id="bookName" required type="text"><label for="bookName">Название книги</label>
+        </div>
+        <div class="form-row">
+            <input id="bookAuthor" required type="text"><label for="bookAuthor">Автор книги</label>
+        </div>
+        <div class="form-row">
+            <input id="bookCover" accept="image/png, image/jpg, image/jpeg" type="file"><label for="bookCover">Обложка (png, jpg)</label>
+        </div>
+        <div class="form-row">
+            <input id="bookFile" type="file"><label for="bookFile">Файл с книгой</label>
+        </div>
+        <div class="form-row">
+            <input id="bookReaded" type="datetime-local"><label for="bookReaded">Дата прочтения</label>
+        </div>
+        <p><button class="submit" id="reg">Загрузить</button></p>
+        <div class="error" id="bookAddError"></div>
+    </form>
+    {% block javascripts %}
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{{ asset('scripts/script.js') }}"></script>
+    {% endblock %}
+</div>
+{% endblock %}

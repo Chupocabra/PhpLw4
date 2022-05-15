@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Библиотека{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('style/header.css') }}">
+            <link rel="stylesheet" href="{{ asset('style/footer.css') }}">
+            <link rel="stylesheet" href="{{ asset('style/form.css') }}">
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="{{ asset('scripts/script.js') }}"></script>
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <body>
+        {% block header %}{% endblock %}
+        {% block body %}{% endblock %}
+        <div class="footer"></div>
+    </body>
+</html>

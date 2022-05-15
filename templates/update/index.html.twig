@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Библиотека{% endblock %}
+
+{% block header %}
+    {% include 'home/header.html.twig' with {'user' : user} %}
+{% endblock %}
+
+{% block body %}
+    <form class="form" id="updateForm" method="POST" enctype="multipart/form-data">
+        <h3>Редактирование книги</h3>
+        <div class="form-row">
+            <input id="updateName" required type="text" value="{{ book.getName() }}">
+            <label for="updateName">Название книги</label>
+        </div>
+        <div class="form-row">
+            <input id="updateAuthor" required type="text" value="{{ book.getAuthor }}">
+            <label for="updateAuthor">Автор книги</label>
+        </div>
+        <div class="form-row">
+            <label>Обложка</label>
+            <img width="200" height="420" src="{{ book.getCover() }}">
+            <button id="deleteCover">Удалить обложку</button>
+        </div>
+        <div class="form-row">
+            <input id="updateCover" accept="image/png, image/jpg, image/jpeg" type="file">
+            <label for="updateCover">Добавить обложку (png, jpg)</label>
+        </div>
+        <div class="form-row">
+            <a href="{{ book.getFile() }}">Книга</a>
+            <button id="deleteFile">Удалить книгу</button>
+        </div>
+        <div class="form-row">
+            <input id="updateFile" type="file" accept="image/png, image/jpg, image/jpeg">
+            <label for="updateFile">Добавить книгу</label>
+        </div>
+        <div class="form-row">
+            <input id="updateReaded" type="datetime-local"
+                   value="{{ book.getReadDate().format('yyyy-MM-ddThh:mm') }}">
+            <label for="updateReaded">Дата прочтения {{  book.getReadDate().format('d.m.Y H:i') }}</label>
+        </div>
+        <div class="error" id="bookUpdateError"></div>
+        <p><button class="submit" id="update">Редактировать</button></p>
+        <input id="bookId" style="visibility: hidden" value="{{ book.getId() }}">
+
+    </form>
+    {% block javascripts %}
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{{ asset('scripts/script.js') }}"></script>
+    {% endblock %}
+    </div>
+{% endblock %}

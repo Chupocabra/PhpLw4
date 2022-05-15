@@ -1,0 +1,31 @@
+<div class="header">
+    <div class="container">
+        <div class="logo"></div>
+        <div class="title"><a href="/">Библиотека</a></div>
+        <div class="header_menu">
+            <ul>
+                <li>
+                    {% if user == null %}
+                        <a href="/authorization" class="glow-button">Войти</a>
+                        <span> | </span>
+                        <a href="/registration" class="glow-button">Регистрация</a>
+                    {% elseif user.id == null %}
+                        <a href="/authorization" class="glow-button">Войти</a>
+                        <span> | </span>
+                        <a href="/registration" class="glow-button">Регистрация</a>
+                    {% else %}
+                        <a href="/create" class="glow-button">Добавить книгу</a>
+                        <span> | </span>
+                        <a id="exit" class="glow-button">Выйти</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+{% block javascripts %}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ asset('scripts/script.js') }}"></script>
+    {#{{ encore_entry_script_tags('app') }}#}
+{% endblock %}

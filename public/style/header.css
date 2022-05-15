@@ -1,0 +1,41 @@
+a {
+    color: black;
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+}
+a:hover {
+    text-decoration: underline; /* Добавляем подчеркивание при наведении курсора на ссылку */
+    color: green; /* Ссылка красного цвета */
+}
+.header{
+    width: 100%;
+    background: #D8E3AB;
+    height: 70px;
+}
+.header_menu{
+    display: flex;
+    list-style: none;
+    position: absolute;
+    top: 10px;
+    right: 100px;
+}
+.title{
+    font-size: 36px;
+    padding-top: 10px;
+    text-align: center;
+}
+.glow-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0px 30px;
+    max-height: 34px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px #5da130 inset, 0 0 0 0 #5da130;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    color: white;
+    transition: .15s ease-in-out;
+}
+.glow-button:hover {
+    box-shadow: 0 0 10px 0 #5da130 inset, 0 0 10px 4px #5da130;
+    color: #5da130;
+}
