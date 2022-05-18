@@ -13,6 +13,7 @@ class RegistrationController extends AbstractController
 {
     /**
      * Рендерим страничку с формой регистрации
+     * параметр интерфейса сессии для проверки текущего пользователя
      * @param Session $session
      * @return Response
      */
@@ -26,9 +27,12 @@ class RegistrationController extends AbstractController
     }
     /**
      * Регистрация
-     * @return Response
+     * параметр интерфейса сессии, при удачной регистрации записываем пользователя
      * @param Session $session
+     * менеджер сущностей, отвечает за сохранение в бд или получение из бд
      * @param EntityManagerInterface $entityManager
+     * возвращает результат регистрации
+     * @return Response
      */
     #[Route('/registration/send', name: 'app_registration_send')]
     public function registr(EntityManagerInterface $entityManager, Session $session): Response

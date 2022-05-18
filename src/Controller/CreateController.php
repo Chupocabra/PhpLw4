@@ -15,7 +15,9 @@ class CreateController extends AbstractController
 {
     /**
      * Рендерим страничку для добавления книги
+     * интерфейс сессии, для создания необходимо получить 'user'
      * @param Session $session
+     * ответ функции - страница добавления
      * @return Response
      */
     #[Route('/create', name: 'app_create')]
@@ -28,9 +30,12 @@ class CreateController extends AbstractController
     }
 
     /**
-     * Добавляем книгу, сессия нужна чтобы указать кто добавил
+     * Добавляем книгу
+     * менеджер сущностей, отвечает за сохранение в бд или полуцчение из бд
      * @param EntityManagerInterface $entityManager
+     * интерфейс сессии, при добавлении книги в бд, записываем кто ее добавил
      * @param Session $session
+     * отфет функции - сообщение о добавлении
      * @return Response
      */
     #[Route('/create/book', name: 'app_create_book')]

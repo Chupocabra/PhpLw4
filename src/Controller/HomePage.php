@@ -17,11 +17,12 @@ class HomePage extends AbstractController
     /**
      * Рендерим главную страничку
      * @Route("/", name="home")
-     *
-     * @param BookRepository $bookRepository
+     * параметр для разбиения книг на странички
      * @param PaginatorInterface $paginator
+     * для работы с глобальными переменными php
      * @param Request $request
-     *
+     * функцию возвращает страничку с книгами, текущим пользователем,
+     * страничками назад и вперед
      * @return Response
      */
     public function index(Request $request, PaginatorInterface $paginator): Response
@@ -32,29 +33,30 @@ class HomePage extends AbstractController
         $books = $this->getDoctrine()
             ->getRepository(Book::class)
             ->findBy([], ['readDate' => 'DESC']);
-
+        //эквивалент get
         $currentPage = $request->query->getInt('page', 1);
         //проверим есть ли еще страничка
-        $hasNext=true;
-        if((count($books)-3*($currentPage))<=0){
-            $hasNext=false;
+        $hasNext = true;
+        if ((count($books) - 3 * ($currentPage)) <= 0) {
+            $hasNext = false;
         }
         //пагинация записей
         $books = $paginator->paginate(
-            $books,//запрос
-            $currentPage,//страничка
+            $books, //запрос
+            $currentPage, //страничка
             3//число записей
         );
 
         $user = $session->get('user');
 
-        return $this->render('home/index.html.twig',
+        return $this->render(
+            'home/index.html.twig',
             [
                 'books' => $books,
                 'currentPage' => $currentPage,
                 'hasNext' => $hasNext,
                 'user' => $user
-            ]);
+            ]
+        );
     }
-
 }

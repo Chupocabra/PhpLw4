@@ -14,8 +14,12 @@ class UpdateController extends AbstractController
 {
     /**
      * Рендерим страничку с формой для изменения книжки
+     * параметр id для определения книжки
      * @param int $id
+     * внедряем сервис Doctrine для поиска книжки по id
      * @param ManagerRegistry $managerRegistry
+     * рендер страницы для обновления книжки
+     * @param Session $session
      * @return Response
      */
     #[Route('/update/{id}', name: 'app_update')]
@@ -36,8 +40,11 @@ class UpdateController extends AbstractController
 
     /**
      * Обновляем книгу
+     * параметр id для определения книжки
      * @param int $id
+     * для изменения книжки
      * @param ManagerRegistry $managerRegistry
+     * возвращаем сообщение о результатах редактирования
      * @return Response
      */
     #[Route('/update/book/{id}', name: 'app_update_book')]

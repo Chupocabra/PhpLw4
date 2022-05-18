@@ -14,7 +14,8 @@ class AuthorizationPhpController extends AbstractController
 {
     /**
      * Рендерим страничку авторизации
-     * @return Response
+     *
+     * @return Response ответ функции - страница авторизации
      */
     #[Route('/authorization', name: 'app_authoriz')]
     public function index(): Response
@@ -26,9 +27,11 @@ class AuthorizationPhpController extends AbstractController
     }
     /**
      * Заводим сессию, указываем в ней пользователя
+     * внедряем сервис Doctrine - параметр для работы с базами данных
      * @param ManagerRegistry $doctrine
+     * интерфейс сессий, при авторизации обновляем 'user' этой сессии
      * @param Session $session
-     *
+     * в ответе сообщение с результатом авторизации
      * @return Response
      */
     #[Route('/authorization/login', name: 'app_authoriz_login')]

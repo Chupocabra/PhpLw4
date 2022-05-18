@@ -12,10 +12,11 @@ class LogoutController extends AbstractController
     /**
      * Передаем сессию чтобы очистить ее
      * @param Session $session
+     * возвращаем сообщение с результатом выхода
      * @return Response
      */
     #[Route('/logout', name: 'app_logout')]
-    public function index(Session $session) : Response
+    public function index(Session $session): Response
     {
         //$session->remove('user');
         $session->clear();
